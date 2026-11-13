@@ -75,11 +75,12 @@ Depois que o site vier, peça mudanças na mesma conversa e termine sempre com "
 ## Publicando no Cloudflare Pages
 
 1. Entre em [dash.cloudflare.com](https://dash.cloudflare.com) com uma conta gratuita.
-2. No menu, abra **Workers & Pages** e clique em **Create**.
-3. Escolha **Pages** e depois **Upload your static files**.
-4. Dê um nome ao projeto. Ele vira o endereço: `nome-do-projeto.pages.dev`.
-5. Arraste o `.zip` (ou a pasta extraída) e clique em **Deploy**.
-6. Abra o endereço `pages.dev` que aparece no fim.
+2. No menu, abra **Compute** → **Workers & Pages** e clique em **Create application**.
+3. Escolha **Upload your static files** e, em "Drag and drop your files", clique em **Get started**.
+4. Dê um nome ao projeto, só com letras minúsculas, números e hífen (exemplo: `meu-site`).
+   Ele vira o endereço `meu-site.pages.dev`. Clique em **Create project**.
+5. Arraste o `.zip` para a área de envio e espere aparecer "All files were successfully uploaded".
+6. Clique em **Deploy site** e abra o endereço `pages.dev` que aparece na tela de sucesso.
 
 Para atualizar o site, entre no projeto, clique em **Create deployment** e suba o `.zip` novo.
 
