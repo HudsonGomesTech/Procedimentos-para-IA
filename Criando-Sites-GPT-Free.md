@@ -76,13 +76,15 @@ Depois que o site vier, peça mudanças na mesma conversa e termine sempre com "
 
 1. Entre em [dash.cloudflare.com](https://dash.cloudflare.com) com uma conta gratuita.
 2. No menu, abra **Compute** → **Workers & Pages** e clique em **Create application**.
-3. Escolha **Upload your static files** e, em "Drag and drop your files", clique em **Get started**.
-4. Dê um nome ao projeto, só com letras minúsculas, números e hífen (exemplo: `meu-site`).
+3. Atenção: a tela abre no modo Worker. Não escolha nenhuma das opções da caixa.
+   Clique no link pequeno embaixo dela: **Continue to Pages**.
+4. Em **Drag and drop your files**, clique em **Get started**.
+5. Dê um nome ao projeto, só com letras minúsculas, números e hífen (exemplo: `meu-site`).
    Ele vira o endereço `meu-site.pages.dev`. Clique em **Create project**.
-5. Arraste o `.zip` para a área de envio e espere aparecer "All files were successfully uploaded".
-6. Clique em **Deploy site** e abra o endereço `pages.dev` que aparece na tela de sucesso.
+6. Arraste o `.zip` para a área de envio e espere aparecer "All files were successfully uploaded".
+7. Clique em **Deploy site** e abra o endereço `pages.dev` que aparece na tela de sucesso.
 
-Para atualizar o site, entre no projeto, clique em **Create deployment** e suba o `.zip` novo.
+Para atualizar o site, entre no projeto e clique em **Create deployment**.
 
 ## Problemas comuns
 
