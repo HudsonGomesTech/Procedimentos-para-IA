@@ -3,6 +3,9 @@
 Escopo pronto para pedir um site ao ChatGPT (plano gratuito) e publicar de graça no Cloudflare Pages.
 Você copia o texto abaixo, troca o que está entre colchetes e recebe um arquivo `.zip` pronto para subir.
 
+> Procedimento validado em 13/11/2026, com o ChatGPT no plano gratuito e o painel da Cloudflare dessa data.
+> As telas mudam com o tempo: se algum botão estiver diferente, a ideia do passo continua a mesma.
+
 ## Como usar
 
 1. Copie o escopo inteiro.
@@ -92,9 +95,11 @@ Para atualizar o site, entre no projeto e clique em **Create deployment**.
 |---|---|
 | O ChatGPT não gerou o `.zip` | Peça: `Gere o .zip agora`. Se não der, peça os arquivos em blocos de código e monte a pasta você mesmo. |
 | O site abre sem cor ou sem imagem | Algum caminho está errado. Peça: `Confira se todos os caminhos são relativos e gere o .zip atualizado.` |
+| Não acho onde enviar o `.zip` | A tela de criação abre no modo Worker. Clique em **Continue to Pages**, no rodapé da caixa. |
+| O nome do projeto dá erro | Use só letras minúsculas, números e hífen, sem espaço e sem maiúscula. |
 | Página em branco no Cloudflare | O `index.html` ficou dentro de uma subpasta. Suba a pasta que contém o `index.html` diretamente. |
 | Limite do plano gratuito atingido | Espere o limite renovar ou continue em uma conversa nova colando o escopo e o que falta. |
 
 ---
 
-Material do canal **Hudson Gomes Tech**. Uso livre, licença MIT.
+Material do canal **Hudson Gomes Tech**. Uso livre, licença MIT. Validado em 13/11/2026.
