@@ -4,7 +4,7 @@ Procedimento do vídeo "Claude Code publicando por você", do canal [Hudson Gome
 
 A ideia: você pede a mudança em português, o Claude Code altera os arquivos do site e envia ao GitHub. Se o site está ligado ao Cloudflare Pages, ele se atualiza sozinho em seguida.
 
-Este passo a passo também corrige o que deu errado na gravação: o token do GitHub apareceu na tela. Mais abaixo está o motivo e como evitar.
+O cuidado principal deste passo a passo é com o token do GitHub: ele nunca deve aparecer na tela.
 
 ## O que você precisa
 
@@ -40,7 +40,7 @@ chmod 600 /etc/credentials/git-token.env
 O que cada parte faz:
 
 - `read -rs` recebe o que você cola sem mostrar na tela e sem guardar no histórico de comandos.
-- O arquivo fica no formato `GITHUB_TOKEN=valor`. O nome na frente é importante, veja a seção "O que deu errado na gravação".
+- O arquivo fica no formato `GITHUB_TOKEN=valor`. O nome na frente é importante, veja a seção "Por que tanto cuidado com o token".
 - `chmod 700` e `chmod 600` deixam a pasta e o arquivo legíveis só para o dono.
 
 Para conferir que gravou, sem mostrar o valor:
@@ -106,15 +106,11 @@ Para os pedidos seguintes basta escrever a mudança, na mesma conversa. Por exem
 - Se o site está no Cloudflare Pages ligado a esse repositório, a publicação começa sozinha e a mudança aparece em um ou dois minutos.
 - Não gostou? Peça ao Claude Code para desfazer a última mudança. O histórico do GitHub guarda todas as versões.
 
-## O que deu errado na gravação
+## Por que tanto cuidado com o token
 
-No vídeo, o arquivo foi criado só com o token dentro, sem o nome `GITHUB_TOKEN=` na frente. O Claude Code tentou ler o arquivo escondendo o valor, mas o comando que ele usou esperava o formato `NOME=valor`. Como não havia nome, o token inteiro saiu na tela. O próprio Claude Code percebeu, avisou e recomendou trocar o token.
+Quem tem o token grava no seu repositório como se fosse você. Três coisas deste procedimento protegem você:
 
-O token daquela gravação foi revogado antes de o vídeo ir ao ar.
-
-Três coisas evitam o problema, e todas estão neste procedimento:
-
-1. O arquivo no formato `GITHUB_TOKEN=valor`, criado com `read -rs`.
+1. O arquivo no formato `GITHUB_TOKEN=valor`, criado com `read -rs`. Com o nome na frente, os comandos que escondem o valor funcionam; um arquivo só com o token dentro acaba aparecendo inteiro na tela quando alguém tenta ler.
 2. O pedido dizendo com todas as letras que o token nunca pode aparecer na tela.
 3. O token limitado a um repositório, só com a permissão **Contents**, e com prazo curto. Se vazar, o estrago é pequeno.
 
