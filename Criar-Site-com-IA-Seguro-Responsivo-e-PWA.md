@@ -7,18 +7,26 @@ Um prompt pronto para você colar numa IA (Claude, ChatGPT, Gemini, Copilot) e r
 - funciona bem no celular, com menu inferior e submenus;
 - tem animações suaves, no estilo do [hudsongomestech.com.br](https://hudsongomestech.com.br);
 - pode ser instalado na tela inicial do celular (PWA);
-- já nasce com as proteções que eu uso nos meus sites.
+- já nasce com as proteções que eu uso nos meus sites;
+- sai pronto para publicar no **Cloudflare Pages**: em um `.zip` (o padrão) ou gravado direto no seu repositório Git.
 
 ## Como usar
 
 1. Copie o prompt da seção **O prompt**, inteiro.
 2. Troque só o bloco **DADOS DO MEU SITE**, no começo. Ele já vem com dados de exemplo (uma padaria fictícia), para você
    ver o formato. Pode deixar campos em branco: a IA usa algo neutro no lugar.
-3. Cole na IA. Funciona melhor numa IA que cria arquivos (Claude Code, por exemplo); numa IA de chat, peça
-   "me entregue arquivo por arquivo" e salve cada um com o nome que ela indicar.
-4. Abra o `index.html` no navegador, confira no celular e peça ajustes na mesma conversa.
-5. Publique (sugestão: Cloudflare Pages, de graça) e, enquanto estiver em construção ou se for área restrita, proteja
-   com o **Cloudflare Access** (seção **Proteger com o Cloudflare Access**).
+3. Escolha a **ENTREGA** (último bloco dos dados):
+   - **zip** (padrão): serve para qualquer IA, inclusive de chat (ChatGPT, Gemini). Você recebe um `.zip` e sobe no
+     Cloudflare Pages arrastando o arquivo.
+   - **git**: só para IA que roda comandos no seu computador ou servidor (Claude Code, por exemplo). Ela grava o site
+     no seu repositório e o Cloudflare Pages publica sozinho a cada envio. Você informa o **endereço do repositório**
+     e **onde está a chave** (o token do GitHub). A chave em si nunca vai no pedido: guarde antes com o procedimento
+     [Claude Code editando o seu site no GitHub, sem vazar o token](Claude-Code-Editando-Site-no-GitHub.md).
+4. Cole na IA. Numa IA de chat, se ela não conseguir gerar o `.zip`, ela mostra arquivo por arquivo: salve cada um
+   com o nome que ela indicar.
+5. Abra o `index.html` no navegador, confira no celular e peça ajustes na mesma conversa.
+6. Publique no Cloudflare Pages (seção **Publicar no Cloudflare Pages**) e, enquanto estiver em construção ou se for
+   área restrita, proteja com o **Cloudflare Access** (seção **Proteger com o Cloudflare Access**).
 
 ---
 
@@ -38,6 +46,13 @@ PÁGINAS / SEÇÕES: Início, Produtos (Pães, Bolos, Salgados), Encomendas, Sob
 CONTATOS: WhatsApp (11) 90000-0000 · e-mail contato@paodourado.exemplo · Instagram @paodourado.exemplo
 ENDEREÇO: Rua das Flores, 123, Centro, Cidade Exemplo - SP · seg a sáb 6h às 20h, dom 6h às 12h
 DETALHES EXTRAS: destacar o bolo de fubá da casa; botão fixo "Pedir pelo WhatsApp"; mostrar o mapa do endereço
+
+PUBLICAÇÃO: Cloudflare Pages
+ENTREGA: zip
+  (troque por "git" só se a IA roda comandos no seu computador; aí preencha as duas linhas abaixo)
+REPOSITÓRIO GIT: https://github.com/seu-usuario/seu-repositorio.git
+CHAVE DO GIT: guardada no arquivo /etc/credentials/git-token.env, variável GITHUB_TOKEN
+  (aqui vai só ONDE a chave está; nunca cole o token neste pedido)
 === FIM DOS DADOS ===
 
 Você é um desenvolvedor web sênior, cuidadoso com segurança. Crie um site completo com os DADOS acima, seguindo
@@ -127,13 +142,44 @@ preços, prêmios ou depoimentos: onde faltar, deixe um texto marcado como [PREE
 - Use imagens de exemplo leves (SVG ou blocos de cor) e me diga onde trocar pelas fotos reais.
 - Rodapé com nome, endereço, contatos, horário e o ano atual.
 
-8. ENTREGA
-- Me entregue cada arquivo completo, com o caminho (ex.: css/estilo.css), sem trechos cortados ou "...".
+8. ENTREGA (sempre para o Cloudflare Pages)
+- O site é publicado no Cloudflare Pages, sem etapa de build: index.html na RAIZ (nunca dentro de uma subpasta),
+  _headers na raiz, e nada que dependa de servidor próprio.
+- Se ENTREGA = zip (ou em branco): gere UM arquivo .zip com o index.html na raiz e me dê o link para baixar.
+  Se não conseguir gerar o .zip, me entregue cada arquivo completo, com o caminho (ex.: css/estilo.css), sem
+  trechos cortados ou "...".
+- Se ENTREGA = git: grave os arquivos na raiz do REPOSITÓRIO GIT informado, no branch main, faça o commit com uma
+  mensagem em português e envie (push). Use a chave do lugar indicado em CHAVE DO GIT, seguindo estas regras:
+  nunca mostre o valor da chave na tela (nada de cat, echo ou comando cuja saída a contenha); não a grave em
+  nenhum arquivo, nem no endereço do repositório, nem na mensagem de commit; se a chave não estiver lá ou o envio
+  falhar, pare e me avise, sem pedir que eu cole a chave na conversa. Se a sua ferramenta não consegue rodar
+  comandos, diga isso e entregue em .zip.
 - No final: a árvore de pastas, como testar no computador e no celular, o que eu preciso trocar (lista dos
   [PREENCHER]) e uma lista do que foi feito para segurança.
 ```
 
 ---
+
+## Publicar no Cloudflare Pages
+
+É gratuito. Os nomes no painel mudam de vez em quando; o caminho é parecido com este:
+
+**Se a entrega foi zip:**
+
+1. Painel da Cloudflare → **Workers e Pages** → **Criar** → aba **Pages** → **Enviar ativos** (Upload assets).
+2. Dê um nome ao projeto (ele vira o endereço `nome.pages.dev`) e arraste o `.zip`.
+3. **Implantar**. Para atualizar depois, abra o projeto → **Criar nova implantação** e arraste o `.zip` novo.
+
+**Se a entrega foi git:**
+
+1. Painel da Cloudflare → **Workers e Pages** → **Criar** → aba **Pages** → **Conectar ao Git**.
+2. Autorize o GitHub e escolha o repositório.
+3. Predefinição de estrutura: **Nenhuma**; comando de build: vazio; diretório de saída: `/`.
+4. **Salvar e implantar**. A partir daí, cada envio (push) para o branch `main` publica o site sozinho.
+
+Um projeto criado por zip não vira projeto Git depois. Se pensa em passar a usar Git, já comece por ele.
+
+Para usar seu domínio (ex.: `meusite.com.br`): no projeto, **Domínios personalizados** → **Configurar domínio**.
 
 ## Proteger com o Cloudflare Access
 

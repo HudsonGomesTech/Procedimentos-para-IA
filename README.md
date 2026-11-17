@@ -1,5 +1,11 @@
-# Procedimentos-para-IA
-Procedimentos públicos usados para criar conteúdo com IA
+# O Pedido Perfeito
+
+**Saiba como pedir à IA acertando de primeira.**
+
+Procedimentos públicos do canal [Hudson Gomes Tech](https://www.youtube.com/@HudsonGomesTech): pedidos prontos para
+copiar, trocar os seus dados e colar na IA, com as regras que fazem o resultado sair certo logo na primeira vez.
+Os sites são sempre pensados para publicar no **Cloudflare Pages**, entregues em `.zip` (o padrão) ou direto no seu
+repositório Git.
 
 ## Procedimentos
 
