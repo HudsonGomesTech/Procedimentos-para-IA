@@ -14,3 +14,4 @@ repositório Git.
 - [Chat de contato no site, com as mensagens chegando no seu e-mail](Chat-de-Contato-no-Site-com-Cloudflare-Email.md)
 - [Prompt para pedir o ícone PWA a qualquer IA](Prompt-Icone-PWA.md)
 - [Criar um site com IA: seguro, responsivo, animado e instalável no celular](Criar-Site-com-IA-Seguro-Responsivo-e-PWA.md)
+- [Notificações no celular com o HLG Notify, sem a IA ver os tokens](Notificacoes-no-Celular-com-HLG-Notify.md)
