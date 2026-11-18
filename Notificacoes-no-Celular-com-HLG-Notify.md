@@ -135,11 +135,24 @@ O que eu quero, nesta ordem:
 
 - O celular tem que tocar com a notificação de teste em poucos segundos, mesmo com o app fechado.
 - A resposta do envio tem que vir com `"devices": 1` (ou o número de celulares inscritos).
-- Depois disso, em qualquer script ou cron:
+- Depois disso, use o comando em qualquer script ou cron. Cada bloco abaixo é um exemplo separado, não uma sequência:
+  troque o texto, os caminhos e a prioridade pelos seus antes de usar.
+
+1. Aviso simples, com título e prioridade baixa:
 
 ```bash
 hlg-notify -t "Backup" -p 2 "Concluído em 4min"
+```
+
+2. Avisar só se outro comando falhar (troque `/opt/backup.sh` pelo seu script):
+
+```bash
 /opt/backup.sh || hlg-notify -t "BACKUP FALHOU" -p 5 "Servidor $(hostname)"
+```
+
+3. Mandar as últimas linhas de um log (troque o caminho pelo do seu log):
+
+```bash
 tail -n 20 /var/log/app.log | hlg-notify -t "Log do app"
 ```
 

@@ -74,10 +74,17 @@ As variáveis só passam a valer na próxima publicação do site. A publicaçã
 
 ## 3. O pedido
 
-No servidor, entre na pasta de trabalho e abra o Claude Code:
+No servidor, rode **um comando por vez**: copie um bloco, cole, aperte Enter e só depois passe para o próximo.
+
+1. Entrar na pasta de trabalho:
 
 ```bash
 cd ~/site
+```
+
+2. Abrir o Claude Code:
+
+```bash
 claude
 ```
 

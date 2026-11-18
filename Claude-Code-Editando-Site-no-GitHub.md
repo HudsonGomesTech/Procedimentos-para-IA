@@ -27,13 +27,25 @@ Não cole o token em conversa, e-mail, anotação ou captura de tela. Ele vai di
 
 ## 2. Guardar o token no servidor, sem mostrar na tela
 
-Rode os três comandos abaixo no servidor. Se você não é o usuário `root`, coloque `sudo` na frente de `mkdir`, `chmod` e `tee`.
+Rode no servidor **um comando por vez**: copie um bloco, cole, aperte Enter e só depois passe para o próximo.
+Colar tudo de uma vez não funciona, porque o `read` "engole" as linhas seguintes como se fossem a resposta dele.
+Se você não é o usuário `root`, coloque `sudo` na frente de `mkdir`, `chmod` e `tee`.
+
+1. Criar a pasta, fechada para os outros usuários:
 
 ```bash
 mkdir -p /etc/credentials && chmod 700 /etc/credentials
+```
 
+2. Colar o token e gravar no arquivo (o token não aparece na tela enquanto você cola; é normal):
+
+```bash
 read -rsp 'Cole o token e aperte Enter: ' T && printf 'GITHUB_TOKEN=%s\n' "$T" | tee /etc/credentials/git-token.env > /dev/null; unset T
+```
 
+3. Deixar o arquivo legível só para o dono:
+
+```bash
 chmod 600 /etc/credentials/git-token.env
 ```
 
@@ -59,10 +71,17 @@ curl -fsSL https://claude.ai/install.sh | bash
 
 Se o instalador avisar que a pasta dele não está no `PATH`, rode o comando que ele mesmo mostra na tela.
 
-Depois crie uma pasta de trabalho, entre nela e abra o Claude Code:
+Depois, rode **um comando por vez**: copie um bloco, cole, aperte Enter e só depois passe para o próximo.
+
+1. Criar a pasta de trabalho e entrar nela:
 
 ```bash
 mkdir -p ~/site && cd ~/site
+```
+
+2. Abrir o Claude Code:
+
+```bash
 claude
 ```
 

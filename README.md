@@ -7,6 +7,17 @@ copiar, trocar os seus dados e colar na IA, com as regras que fazem o resultado 
 Os sites são sempre pensados para publicar no **Cloudflare Pages**, entregues em `.zip` (o padrão) ou direto no seu
 repositório Git.
 
+## Como usar os blocos de código
+
+O botão de copiar do GitHub copia o bloco inteiro, mas nem todo bloco é para colar de uma vez:
+
+- **Blocos de comando (terminal):** cada bloco tem **um comando só**, numerado. Copie um, cole, aperte Enter, veja o
+  resultado e só então passe para o próximo. Colar vários comandos juntos pode quebrar, principalmente os que pedem
+  para você digitar ou colar algo (como o `read`): eles "engolem" as linhas seguintes como se fossem a resposta.
+- **Blocos de pedido (o texto para a IA):** esses sim são para copiar inteiros e colar na conversa, depois de trocar o
+  que está entre `< >` pelos seus dados.
+- **Exemplos:** quando o texto diz que é exemplo, troque nomes, caminhos e valores pelos seus antes de rodar.
+
 ## Procedimentos
 
 - [Criando sites com o ChatGPT gratuito](Criando-Sites-GPT-Free.md)
