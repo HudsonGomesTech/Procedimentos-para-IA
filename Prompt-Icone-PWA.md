@@ -1,8 +1,8 @@
 # Prompt para pedir o ícone PWA a qualquer IA
 
-Serve para ChatGPT, Gemini, Claude, Copilot etc. Copie o bloco, troque o que está entre `[colchetes]` e cole na IA. O que volta já vem no formato da receita `PWA.md`: dois SVG (normal e maskable) que viram os PNG com `render-icones.py`. Os PNG não são pedidos à IA porque saem do SVG pelo script, sempre certos.
+Serve para ChatGPT, Gemini, Claude, Copilot etc. Copie o bloco, troque o que está entre `[colchetes]` e cole na IA. O que volta são dois SVG (normal e maskable). Os PNG nos tamanhos certos não são pedidos à IA de imagem: eles saem desses SVG (passo 3), sempre certos.
 
-**Cores:** em `*.hudsongomes.blog.br` use a identidade visual (`hlgcloud/identidade-visual`), que é o padrão do prompt abaixo. Em `hlgcloud.com.br`, troque pelas cores HLGCLOUD: fundo `#0b1220`, degradê `#3d63dd` → `#6d93ff` e branco. Projeto com identidade própria (ex.: ValleKids) usa a dele.
+**Cores:** use as cores do seu site (as mesmas do logo e do tema). Os exemplos abaixo usam azul, verde e amarelo só para mostrar o formato: troque pelos códigos das suas cores.
 
 ## 1. Prompt para IA de texto (devolve o código SVG): o recomendado
 
@@ -17,7 +17,7 @@ Regras do desenho:
 - Um símbolo simples, que represente o que o app faz e seja reconhecível a 48 px.
 - Proibido: texto ou palavras, só uma letra solta, emoji, foto, ícone genérico de biblioteca, sombra realista, detalhe fino.
 - Traços e formas grossos; no máximo 3 cores além do fundo.
-- Cores (use só estas): fundo azul #002776; aro ou destaque verde #009C3B; detalhe amarelo #FFDF00; branco #FFFFFF.
+- Cores (use só estas): fundo [cor de fundo, ex.: #002776]; destaque [cor 2, ex.: #009C3B]; detalhe [cor 3, ex.: #FFDF00]; branco #FFFFFF.
 
 Regras técnicas:
 - <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">.
@@ -42,8 +42,8 @@ Use quando a IA de texto não acertar o desenho. O PNG serve de rascunho: depois
 ```text
 Ícone de aplicativo, estilo flat, vetorial, minimalista, quadrado 1024x1024.
 Símbolo central: [ideia do desenho] representando [o que o app faz].
-Fundo sólido azul #002776 preenchendo a imagem inteira, sem cantos arredondados, sem moldura.
-Símbolo em branco #FFFFFF com detalhes em verde #009C3B e amarelo #FFDF00, formas grossas, legível em tamanho pequeno,
+Fundo sólido [cor de fundo, ex.: #002776] preenchendo a imagem inteira, sem cantos arredondados, sem moldura.
+Símbolo em branco #FFFFFF com detalhes em [cor 2] e [cor 3], formas grossas, legível em tamanho pequeno,
 ocupando no máximo 70% do centro, com margem livre em volta.
 Sem texto, sem letras, sem sombra, sem degradê realista, sem efeito 3D, sem mockup de celular.
 ```
@@ -54,5 +54,5 @@ Sem texto, sem letras, sem sombra, sem degradê realista, sem efeito 3D, sem moc
 - [ ] `icone.svg` tem cantos arredondados; `icone-maskable.svg` tem fundo quadrado e o símbolo menor.
 - [ ] As cores são só as pedidas.
 - [ ] Abrir o SVG no navegador bem pequeno (zoom ou 48 px): o símbolo ainda se entende.
-- [ ] Gerar os PNG: `python3 render-icones.py <pasta_dos_svg> <pasta_saida>` (nesta pasta) → `icone-192.png`, `icone-512.png`, `icone-maskable-512.png`, `apple-touch-icon.png`. Olhar os PNG antes de publicar.
+- [ ] Gerar os PNG: coloque os dois SVG no repositório do site e peça ao Claude Code: "gere a partir destes SVG os PNG icone-192.png, icone-512.png, icone-maskable-512.png e apple-touch-icon.png (180x180) e troque os ícones do site" (veja [Site-Instalavel-PWA-com-Claude-Code.md](Site-Instalavel-PWA-com-Claude-Code.md)). Olhar os PNG antes de publicar.
 - [ ] Se algo veio errado, responda na mesma conversa: "refaça seguindo as regras técnicas; o problema foi: [...]".
