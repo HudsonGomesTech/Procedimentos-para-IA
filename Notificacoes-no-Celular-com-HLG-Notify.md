@@ -33,17 +33,43 @@ servidor mas não tocam em lugar nenhum (a API responde `"devices": 0`).
 
 ## 3. Guardar os tokens no servidor, sem mostrar na tela
 
-Rode no servidor. Se você não é o usuário `root`, coloque `sudo` na frente de `mkdir`, `chmod` e `tee`.
+Rode no servidor **um comando por vez**: copie um bloco, cole, aperte Enter e só depois passe para o próximo.
+Colar tudo de uma vez não funciona, porque o `read` "engole" as linhas seguintes como se fossem a resposta dele.
+Se você não é o usuário `root`, coloque `sudo` na frente de `mkdir`, `chmod` e `tee`.
+
+1. Criar a pasta, fechada para os outros usuários:
 
 ```bash
 mkdir -p /etc/credentials && chmod 700 /etc/credentials
+```
 
-read -rp  'Código do canal (hlg-...): ' C
+2. Digitar o código do canal (aparece na tela, não é segredo):
+
+```bash
+read -rp 'Código do canal (hlg-...): ' C
+```
+
+3. Colar o publish token (não aparece na tela enquanto você cola; é normal):
+
+```bash
 read -rsp 'Cole o PUBLISH_TOKEN e aperte Enter: ' P; echo
-read -rsp 'Cole o ENROLL_TOKEN e aperte Enter: ' E; echo
-printf 'CANAL=%s\nPUBLISH_TOKEN=%s\nENROLL_TOKEN=%s\n' "$C" "$P" "$E" | tee /etc/credentials/hlg-notify.env > /dev/null
-unset C P E
+```
 
+4. Colar o enroll token:
+
+```bash
+read -rsp 'Cole o ENROLL_TOKEN e aperte Enter: ' E; echo
+```
+
+5. Gravar os três no arquivo, no formato `NOME=valor`, e apagar da memória do terminal:
+
+```bash
+printf 'CANAL=%s\nPUBLISH_TOKEN=%s\nENROLL_TOKEN=%s\n' "$C" "$P" "$E" | tee /etc/credentials/hlg-notify.env > /dev/null; unset C P E
+```
+
+6. Deixar o arquivo legível só para o dono:
+
+```bash
 chmod 600 /etc/credentials/hlg-notify.env
 ```
 
