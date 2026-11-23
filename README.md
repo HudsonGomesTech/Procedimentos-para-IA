@@ -24,6 +24,6 @@ O botão de copiar do GitHub copia o bloco inteiro, mas nem todo bloco é para c
 - [Claude Code editando o seu site no GitHub, sem vazar o token](Claude-Code-Editando-Site-no-GitHub.md)
 - [Chat de contato no site, com as mensagens chegando no seu e-mail](Chat-de-Contato-no-Site-com-Cloudflare-Email.md)
 - [Deixar o seu site instalável (PWA) com o Claude Code](Site-Instalavel-PWA-com-Claude-Code.md)
-- [Prompt para criar o ícone PWA do seu site com IA](Prompt-Icone-PWA.md)
+- [Como pedir o ícone do seu PWA à IA: um pedido só, com cinco linhas para preencher](Prompt-Icone-PWA.md)
 - [Criar um site com IA: seguro, responsivo, animado e instalável no celular](Criar-Site-com-IA-Seguro-Responsivo-e-PWA.md)
 - [Notificações no celular com o HLG Notify, sem a IA ver os tokens](Notificacoes-no-Celular-com-HLG-Notify.md)

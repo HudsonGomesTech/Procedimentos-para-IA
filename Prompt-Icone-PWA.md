@@ -1,78 +1,114 @@
-# Prompt para criar o ícone PWA do seu site com IA
+# Como pedir o ícone do seu PWA à IA
 
-Duas etapas, cada uma na IA certa:
+**O Pedido Perfeito: saiba como pedir à IA acertando de primeira.**
 
-1. **O desenho** num **gerador de imagem** (Gemini, ou o gerador de imagem do ChatGPT). É ele que desenha bem.
-2. **Os arquivos** (os tamanhos do PWA, o maskable, o favicon e o manifest) numa **IA que executa código** (Claude Code, ou o ChatGPT quando ele roda Python). Ela não desenha nada: só recorta, redimensiona e confere a imagem que você aprovou.
+Um pedido pronto para você copiar, preencher cinco linhas e colar na IA. Ela devolve um `.zip` com todos os ícones
+que um site instalável (PWA) precisa, mais o `manifest.json` e as tags do `<head>`.
 
-Por que separar: pedir tudo de uma vez faz a IA escolher um caminho só. Se ela escolhe desenhar por código, o ícone sai pobre. Se escolhe o gerador de imagem, os arquivos não saem. O PWA não precisa de SVG: o `manifest.json` usa PNG.
+> Testado em 22/11/2026 no Claude e no Gemini: os dois entregaram o `.zip` com os oito arquivos.
+> A IA precisa conseguir gerar imagem e montar arquivos na mesma conversa.
 
-**Cores:** use as do seu site (as mesmas do logo e do tema). Os exemplos usam laranja e marrom só para mostrar o formato.
+## Como usar
 
-## 1. O desenho: prompt para o gerador de imagem
+1. Copie o pedido inteiro, do `=== PREENCHA AQUI ===` até o fim.
+2. Preencha as cinco variáveis do topo. Não mude o resto.
+3. Cole na IA e envie.
+4. Ela mostra primeiro a imagem mestre (1024 x 1024). Se não gostou, peça o ajuste na mesma conversa; se gostou, responda "aprovado".
+5. Baixe o `.zip` e coloque os arquivos na raiz do seu site.
 
-Cole no Gemini ou no gerador de imagem do ChatGPT. Peça 3 ou 4 variações e escolha uma.
-
-```text
-Crie o ícone de um aplicativo para celular. Só o símbolo, sem nenhum texto.
-
-O aplicativo: [nome do app] — [o que ele faz, numa frase]
-Símbolo: [ideia do desenho, ex.: "dois espetinhos cruzados sobre uma chama"; ou "sugira você"]
-
-Estilo: [escolha UMA das duas linhas abaixo e apague a outra]
-- REALISTA: ícone 3D realista de aplicativo premium, texturas reais, brilho, volume e profundidade,
-  acabamento polido. O objeto flutua direto sobre o fundo: sem quadrado, placa, moldura ou ícone atrás dele.
-- ILUSTRAÇÃO: ícone moderno de aplicativo, ilustração plana com volume leve, formas grandes e simples,
-  contorno grosso na cor [cor do contorno, ex.: #2D1206], só as cores [#FF6B00], [#D64026], [#FFB703] e branco.
-Um único objeto (ou grupo) principal, grande e bem recortado, com bastante contraste com o fundo,
-reconhecível em tamanho pequeno (48 px).
-
-Formato: imagem quadrada 1024 x 1024.
-Fundo: uma cor só, lisa, [cor de fundo, ex.: #FF6B00], sem degradê e sem textura, preenchendo a imagem
-inteira, de borda a borda, inclusive os quatro cantos (quadrado reto, sem cantos arredondados), sem moldura.
-O símbolo centralizado, ocupando no máximo 60% da largura, com margem livre em volta
-(o celular recorta as bordas do ícone).
-
-Proibido: letras, palavras, números, logotipo de outra marca, mockup de celular, marca d'água,
-mãos, pessoas, mesa ou cenário atrás, detalhes finos que somem em tamanho pequeno.
-```
-
-Se a imagem vier com texto, borda arredondada ou o símbolo grande demais, responda na mesma conversa: "refaça sem [o problema]; mantenha o resto".
-
-Guarde a escolhida como `icone-1024.png`. Testado em 18/11/2026 com o Gemini, nos dois estilos: sai bom de primeira. Às vezes os cantos vêm levemente arredondados (a etapa 2 corrige); no realista, sem a frase "o objeto flutua direto sobre o fundo" ele desenha um ícone dentro do ícone.
-
-## 2. Os arquivos: prompt para a IA que executa código
-
-No **Claude Code** (na pasta do site) ou no **ChatGPT** (envie a imagem; ele precisa rodar Python). Envie o `icone-1024.png` junto.
+## O pedido para copiar
 
 ```text
-Tenho o ícone aprovado em icone-1024.png (quadrado, fundo sólido, símbolo no centro).
-NÃO desenhe nada novo e não mude as cores: use só essa imagem.
-Se os cantos vierem arredondados ou com borda clara, pinte cada canto com a cor do fundo logo ao lado dele.
+=== PREENCHA AQUI ===
+NOME_DO_APP: 
+O_QUE_O_APP_FAZ: 
+OBJETO_CENTRAL: (ex.: um cofre, um cadeado, uma moeda)
+COR_DO_FUNDO: 
+COR_DO_OBJETO: (opcional; deixe "livre" para a IA escolher)
+=====================
 
-Gere por código (Python com Pillow) e me entregue:
-1. icon-512.png e icon-192.png: a imagem redimensionada.
-2. icon-512-maskable.png: o símbolo inteiro dentro do círculo central de 80% da imagem.
-   Se precisar, reduza a imagem e complete a borda com a própria imagem esticada e desfocada
-   (assim não aparece emenda, mesmo se o fundo tiver variação de cor).
-3. apple-touch-icon.png (180 x 180), sem transparência.
-4. favicon.ico com os tamanhos 16, 32 e 48, e favicon-32.png.
-5. O trecho "icons" do manifest.json apontando para esses arquivos
-   (o maskable com "purpose": "maskable"; os outros com "purpose": "any").
-6. As linhas do <head> do HTML: favicon e apple-touch-icon.
+Crie um ícone de aplicativo para o meu PWA usando as variáveis acima.
 
-No fim, rode uma verificação e mostre uma tabela com o nome, as medidas em px e o tamanho em KB
-de cada arquivo. Nenhum arquivo pode ter 0 bytes. Se estiver no Claude Code, coloque os arquivos
-na pasta do site e atualize o manifest e o HTML.
+ESTILO
+- Um único objeto central: o OBJETO_CENTRAL, representando O_QUE_O_APP_FAZ.
+- Visual 3D realista, com materiais, luz, sombras suaves e profundidade, no estilo dos ícones modernos de iOS/macOS.
+- Nada de ícone flat, minimalista ou genérico.
+- Nada de paisagem, cenário, pessoas ou vários elementos pequenos.
+- Silhueta forte e alto contraste: precisa ser reconhecível em 48x48 pixels.
+- Fundo simples em cor sólida ou degradê suave na COR_DO_FUNDO, preenchendo a imagem inteira até as bordas.
+- Objeto na COR_DO_OBJETO, contrastando bem com o fundo.
+- Sem texto, letras ou marca d'água.
+- Objeto centralizado, ocupando cerca de 60% da imagem, com margem livre em volta.
+
+PROCESSO
+1. Se alguma variável acima estiver vazia, me pergunte antes de gerar.
+2. Gere primeiro uma imagem mestre quadrada de 1024x1024 e me mostre para eu aprovar.
+3. Depois de aprovada, redimensione a partir dela (não gere imagens novas para cada tamanho) e me entregue um ZIP com:
+   - icon-192.png (192x192)
+   - icon-512.png (512x512)
+   - icon-maskable-512.png (512x512, objeto dentro dos 80% centrais, fundo até as bordas)
+   - apple-touch-icon.png (180x180, sem transparência)
+   - favicon-32.png (32x32) e favicon.ico
+   - manifest.json com as entradas de ícones preenchidas e "name" igual ao NOME_DO_APP
+   - snippet.html com as tags <link> para colocar no <head>
+4. Todos os arquivos em PNG com cantos retos (o sistema operacional arredonda sozinho).
 ```
 
-## 3. Conferir antes de publicar
+## Exemplo preenchido
 
-- [ ] O ícone não tem texto, e as cores são as do site.
-- [ ] Em tamanho pequeno (abra o `icon-192.png` com zoom baixo ou no favicon da aba), o símbolo ainda se entende.
-- [ ] No `icon-512-maskable.png`, nada importante encosta na borda: imagine um círculo de 80% no centro.
-- [ ] A tabela da verificação tem todos os arquivos, com as medidas certas e nenhum com 0 KB.
-- [ ] O `manifest.json` só aponta para arquivos que existem.
-- [ ] Depois de publicar, instale o site no celular: o ícone na tela inicial não pode aparecer cortado.
+```text
+=== PREENCHA AQUI ===
+NOME_DO_APP: Pão Dourado
+O_QUE_O_APP_FAZ: aplicativo de uma padaria
+OBJETO_CENTRAL: um pão
+COR_DO_FUNDO: marrom claro
+COR_DO_OBJETO: livre
+=====================
+```
 
-Para instalar o site como aplicativo (PWA) com o Claude Code, veja [Site-Instalavel-PWA-com-Claude-Code.md](Site-Instalavel-PWA-com-Claude-Code.md).
+## Por que cada regra existe
+
+| Regra | O que ela evita |
+|---|---|
+| Variáveis no topo, separadas do resto | Você mexer nas regras sem querer ao trocar os dados. |
+| "Se alguma variável estiver vazia, me pergunte" | A IA inventar o nome ou a cor por conta própria. |
+| Um único objeto, sem cenário nem pessoas | Um desenho cheio de detalhes que vira um borrão no tamanho de ícone. |
+| Reconhecível em 48x48 | Um ícone bonito grande e ilegível na tela do celular. |
+| Fundo até as bordas, cantos retos | Borda branca ou canto duplo: o celular já arredonda o ícone sozinho. |
+| Sem texto | Letras que ficam ilegíveis e erradas em imagem gerada por IA. |
+| Objeto em cerca de 60%, com margem | O objeto cortado quando o Android recorta o ícone em círculo. |
+| Imagem mestre aprovada antes | Receber um pacote inteiro de um desenho de que você não gostou. |
+| "Redimensione a partir dela" | Cada tamanho sair com um desenho diferente. |
+| Maskable com o objeto nos 80% centrais | O ícone cortado nos celulares que usam máscara. |
+| `apple-touch-icon` sem transparência | Fundo preto atrás do ícone no iPhone. |
+
+## O que vem no ZIP
+
+| Arquivo | Medidas | Para que serve |
+|---|---|---|
+| `icon-192.png` | 192 x 192 | Ícone do app no Android e no manifest. |
+| `icon-512.png` | 512 x 512 | Ícone grande e tela de abertura. |
+| `icon-maskable-512.png` | 512 x 512 | Versão com folga, que o Android recorta em círculo ou outro formato. |
+| `apple-touch-icon.png` | 180 x 180 | Ícone na tela inicial do iPhone e do iPad. |
+| `favicon-32.png` e `favicon.ico` | 32 x 32 | Ícone da aba do navegador. |
+| `manifest.json` | | Nome, cores e ícones do app instalável. |
+| `snippet.html` | | Linhas para colar dentro do `<head>` do seu site. |
+
+## Conferir antes de publicar
+
+- [ ] O `.zip` tem os oito arquivos e nenhum está com 0 KB.
+- [ ] O ícone não tem texto e o fundo vai até as bordas, com cantos retos.
+- [ ] Olhando o `favicon-32.png`, o objeto ainda se entende.
+- [ ] No `icon-maskable-512.png`, nada importante encosta na borda.
+- [ ] O `"name"` do `manifest.json` é o nome do seu app, e ele só aponta para arquivos que existem.
+- [ ] As linhas do `snippet.html` estão dentro do `<head>` do seu site.
+
+Se algo veio errado, responda na mesma conversa: "refaça seguindo as regras; o problema foi: ...".
+
+## Só os ícones não deixam o site instalável
+
+Além do `manifest.json` e dos ícones, o navegador exige que o site esteja em **HTTPS**. Para funcionar offline,
+o site precisa também de um service worker (`sw.js`), que este pedido não gera. O passo a passo está em
+[Deixar o seu site instalável (PWA) com o Claude Code](Site-Instalavel-PWA-com-Claude-Code.md).
+
+[Voltar à lista de procedimentos](README.md) do canal [Hudson Gomes Tech](https://www.youtube.com/@HudsonGomesTech).
